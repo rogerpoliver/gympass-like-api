@@ -15,10 +15,10 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
   try {
     const prismaUsersRepository = new PrismaUsersRepository();
     const registerService = new RegisterService(prismaUsersRepository);
+
     await registerService.execute({ name, email, password });
   } catch (error) {
     return reply.status(409).send();
   }
-
   return reply.status(201).send();
 }
