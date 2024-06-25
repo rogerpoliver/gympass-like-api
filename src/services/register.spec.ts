@@ -52,5 +52,8 @@ describe("Register Use Case", () => {
       email: "johndoe@example.com",
       password: "123456",
     });
+
+    expect(user.id).toEqual(expect.any(String))
   });
+
 });
