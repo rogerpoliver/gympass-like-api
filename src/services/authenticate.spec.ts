@@ -1,11 +1,10 @@
-import { compare, hash } from "bcryptjs";
-import { describe, expect, it } from "vitest";
+import { hash } from 'bcryptjs';
+import { describe, expect, it } from 'vitest';
 
-import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-users.repository";
-import { AuthenticateService } from "@/services/authenticate.service";
+import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users.repository';
+import { AuthenticateService } from '@/services/authenticate.service';
 
-import { InvalidCredentialsError } from "./errors/invalid-credentials.error";
-import { UserAlreadyExistsError } from "./errors/user-already-exists.error";
+import { InvalidCredentialsError } from './errors/invalid-credentials.error';
 
 describe("Authenticate Use Case", () => {
   it("should be able to authenticate", async () => {
