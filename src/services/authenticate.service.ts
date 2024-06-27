@@ -17,10 +17,10 @@ interface AuthenticateServiceResponse {
 export class AuthenticateService {
   constructor(private usersRepository: UsersRepository) {}
 
-  async execute(
-    email: string,
-    password: string
-  ): Promise<AuthenticateServiceResponse> {
+  async execute({
+    email,
+    password,
+  }: AuthenticateServiceRequest): Promise<AuthenticateServiceResponse> {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
