@@ -1,6 +1,9 @@
 ![GymPass Like API](.github/img/readme_header.png)
 
-## RFs (Functional Requirements)
+[Backlog](https://github.com/users/rogerpoliver/projects/1/views/1)
+
+<details>
+  <summary>Functional Requirements</summary>
 
 - [x] Must be possible to register;
 - [x] Must be possible to authenticate;
@@ -13,7 +16,10 @@
 - [ ] Must be possible to validate a user's check-in;
 - [ ] Must be possible to register a gym;
 
-## RNs (Business Rules)
+</details>
+
+<details>
+  <summary>Business Rules</summary>
 
 - [x] user must not be able to register with a duplicate email;
 - [ ] The user cannot make 2 check-ins on the same day;
@@ -22,9 +28,14 @@
 - [ ] The check-in can only be validated by administrators;
 - [ ] The gym can only be registered by administrators;
 
-## RNFs (Non-functional Requirements)
+</details>
+
+<details>
+  <summary>Non-functional Requirements</summary>
 
 - [x] The user's password needs to be encrypted;
 - [x] Application data needs to be persisted in a PostgreSQL database;
 - [ ] All data lists need to be paginated with 20 items per page;
 - [ ] The user must be identified by a JWT (JSON Web Token);
+
+</details>
