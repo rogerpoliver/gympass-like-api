@@ -1,6 +1,8 @@
 ![GymPass Like API](.github/img/readme_header.png)
 
-[Backlog](https://github.com/users/rogerpoliver/projects/1/views/1)
+![Unit Tests badge](https://github.com/rogerpoliver/gympass-like-api/actions/workflows/unit-tests.yml/badge.svg)
+
+[Kanban board](https://github.com/users/rogerpoliver/projects/1/views/1)
 
 <details>
   <summary>Functional Requirements</summary>
