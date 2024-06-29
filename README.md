@@ -1,6 +1,4 @@
-# App
-
-GymPass like app.
+![GymPass Like API](.github/img/readme_header.png)
 
 ## RFs (Functional Requirements)
 
