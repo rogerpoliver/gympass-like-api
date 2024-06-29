@@ -1,7 +1,7 @@
 {
-  "name": "03-api-solid",
+  "name": "gympass-like-api",
   "version": "1.0.0",
-  "description": "GymPass style app.",
+  "description": "GymPass like app.",
   "main": "index.js",
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
