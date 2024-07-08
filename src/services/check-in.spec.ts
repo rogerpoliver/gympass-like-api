@@ -21,8 +21,8 @@ describe("Check In Use Case", () => {
       title: "JavaScript Gym",
       description: "",
       phone: "",
-      latitude: new Decimal(0),
-      longitude: new Decimal(0),
+      latitude: new Decimal(-27.2114002),
+      longitude: new Decimal(-49.6398757),
       created_at: new Date(),
       updated_at: new Date(),
     });
@@ -38,8 +38,8 @@ describe("Check In Use Case", () => {
     const { checkIn } = await systemUnderTesting.execute({
       gymId: "gym-01",
       userId: "user-01",
-      userLongitude: -49.6398757,
       userLatitude: -27.2114002,
+      userLongitude: -49.6398757,
     });
 
     expect(checkIn.id).toEqual(expect.any(String));
@@ -51,16 +51,16 @@ describe("Check In Use Case", () => {
     await systemUnderTesting.execute({
       gymId: "gym-01",
       userId: "user-01",
-      userLongitude: -49.6398757,
       userLatitude: -27.2114002,
+      userLongitude: -49.6398757,
     });
 
     await expect(() =>
       systemUnderTesting.execute({
         gymId: "gym-01",
         userId: "user-01",
-        userLongitude: -49.6398757,
         userLatitude: -27.2114002,
+        userLongitude: -49.6398757,
       })
     ).rejects.toBeInstanceOf(Error);
   });
@@ -71,8 +71,8 @@ describe("Check In Use Case", () => {
     await systemUnderTesting.execute({
       gymId: "gym-01",
       userId: "user-01",
-      userLongitude: -49.6398757,
       userLatitude: -27.2114002,
+      userLongitude: -49.6398757,
     });
 
     vi.setSystemTime(new Date(21, 0, 20, 8, 0, 0));
@@ -80,10 +80,32 @@ describe("Check In Use Case", () => {
     const { checkIn } = await systemUnderTesting.execute({
       gymId: "gym-01",
       userId: "user-01",
-      userLongitude: -49.6398757,
       userLatitude: -27.2114002,
+      userLongitude: -49.6398757,
     });
 
     expect(checkIn.id).toEqual(expect.any(String));
+  });
+
+  it("should not be able to check-in on a distant gym", async () => {
+    gymsRepository.items.push({
+      id: "gym-golang",
+      title: "GoLang Gym",
+      description: "",
+      phone: "",
+      latitude: new Decimal(-49.3411828),
+      longitude: new Decimal(-49.7362561),
+      created_at: new Date(),
+      updated_at: new Date(),
+    });
+
+    await expect(() =>
+      systemUnderTesting.execute({
+        gymId: "gym-golang",
+        userId: "user-01",
+        userLatitude: -27.2114002,
+        userLongitude: -49.6398757,
+      })
+    ).rejects.toBeInstanceOf(Error);
   });
 });
