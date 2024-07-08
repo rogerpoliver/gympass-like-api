@@ -1,12 +1,10 @@
-import { Decimal } from 'prisma/prisma-client/runtime';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { Decimal } from "prisma/prisma-client/runtime";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import {
-    InMemoryCheckInsRepository
-} from '@/repositories/in-memory/in-memory-check-ins.repository';
-import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms.repository';
+import { InMemoryCheckInsRepository } from "@/repositories/in-memory/in-memory-check-ins.repository";
+import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gyms.repository";
 
-import { CheckInService } from './check-in.service';
+import { CheckInService } from "./check-in.service";
 
 let checkInsRepository: InMemoryCheckInsRepository;
 let gymsRepository: InMemoryGymsRepository;
@@ -76,8 +74,6 @@ describe("Check In Use Case", () => {
       userLongitude: -49.6398757,
       userLatitude: -27.2114002,
     });
-
-    // -27.2114002,-49.6398757,
 
     vi.setSystemTime(new Date(21, 0, 20, 8, 0, 0));
 
