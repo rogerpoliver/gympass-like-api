@@ -1,4 +1,4 @@
-import { randomUUID } from 'node:crypto';
+import { randomUUID } from 'crypto';
 
 import { Gym, Prisma } from '@prisma/client';
 
@@ -9,7 +9,7 @@ export class InMemoryGymsRepository implements GymsRepository {
 
   async create(data: Prisma.GymCreateInput) {
     const gym = {
-      id: data.id ?? randomUUID(),
+      id: randomUUID(),
       title: data.title,
       description: data.description ?? null,
       phone: data.phone ?? null,
@@ -24,13 +24,7 @@ export class InMemoryGymsRepository implements GymsRepository {
     return gym;
   }
 
-  async findById(id: string) {
-    const gym = this.items.find((item) => item.id === id);
-
-    if (!gym) {
-      return null;
-    }
-
-    return gym;
+  async findById(id: string): Promise<Gym | null> {
+    throw new Error("Method not implemented.");
   }
 }
