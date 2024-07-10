@@ -1,10 +1,14 @@
-import { Decimal } from "prisma/prisma-client/runtime";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { Decimal } from 'prisma/prisma-client/runtime';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { InMemoryCheckInsRepository } from "@/repositories/in-memory/in-memory-check-ins.repository";
-import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gyms.repository";
+import {
+    InMemoryCheckInsRepository
+} from '@/repositories/in-memory/in-memory-check-ins.repository';
+import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms.repository';
 
-import { CheckInService } from "./check-in.service";
+import { CheckInService } from './check-in.service';
+import { MaxDistanceError } from './errors/max-distance.error';
+import { MaxNumberCheckInsError } from './errors/max-number-check-ins.error';
 
 let checkInsRepository: InMemoryCheckInsRepository;
 let gymsRepository: InMemoryGymsRepository;
@@ -16,13 +20,13 @@ describe("Check In Use Case", () => {
     gymsRepository = new InMemoryGymsRepository();
     systemUnderTesting = new CheckInService(checkInsRepository, gymsRepository);
 
-    gymsRepository.items.push({
+    gymsRepository.create({
       id: "gym-01",
       title: "JavaScript Gym",
       description: "",
       phone: "",
-      latitude: new Decimal(-27.2114002),
-      longitude: new Decimal(-49.6398757),
+      latitude: -27.2114002,
+      longitude: -49.6398757,
       created_at: new Date(),
       updated_at: new Date(),
     });
@@ -62,7 +66,7 @@ describe("Check In Use Case", () => {
         userLatitude: -27.2114002,
         userLongitude: -49.6398757,
       })
-    ).rejects.toBeInstanceOf(Error);
+    ).rejects.toBeInstanceOf(MaxNumberCheckInsError);
   });
 
   it("should be able to check in twice but in different days", async () => {
@@ -106,6 +110,6 @@ describe("Check In Use Case", () => {
         userLatitude: -27.2114002,
         userLongitude: -49.6398757,
       })
-    ).rejects.toBeInstanceOf(Error);
+    ).rejects.toBeInstanceOf(MaxDistanceError);
   });
 });
