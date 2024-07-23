@@ -33,4 +33,16 @@ export class InMemoryGymsRepository implements GymsRepository {
 
     return gym;
   }
+
+  async searchMany(query: string, page: number) {
+    const gyms = this.items
+      .filter((checkIn) => checkIn.title.includes(query))
+      .slice((page - 1) * 20, page * 20);
+
+    if (!gyms) {
+      return [];
+    }
+
+    return gyms;
+  }
 }
