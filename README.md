@@ -13,7 +13,7 @@
 - [x] Must be possible to retrieve the number of check-ins performed by the logged-in user;
 - [x] Must be possible for the user to retrieve their check-in history;
 - [ ] Must be possible for the user to search for nearby gyms;
-- [ ] Must be possible for the user to search for gyms by name;
+- [x] Must be possible for the user to search for gyms by name;
 - [x] Must be possible for the user to check-in at a gym;
 - [ ] Must be possible to validate a user's check-in;
 - [x] Must be possible to register a gym;
