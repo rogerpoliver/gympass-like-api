@@ -1,10 +1,10 @@
-import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users.repository';
+import { PrismaUsersRepository } from "@/repositories/prisma/prisma-users.repository";
 
-import { RegisterService } from '../register.service';
+import { RegisterService } from "../register.service";
 
 export function makeRegisterUseCase() {
   const prismaUsersRepository = new PrismaUsersRepository();
-  const registerService = new RegisterService(prismaUsersRepository);
+  const useCase = new RegisterService(prismaUsersRepository);
 
-  return registerService;
+  return useCase;
 }
