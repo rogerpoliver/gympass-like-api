@@ -1,4 +1,4 @@
-import { Gym, Prisma } from '@prisma/client';
+import { Gym, Prisma } from "@prisma/client";
 
 export interface UserLocalization {
   latitude: number;
@@ -6,7 +6,7 @@ export interface UserLocalization {
 }
 
 export interface GymsRepository {
-  create(dat: Prisma.GymCreateInput): Promise<Gym>;
+  create(data: Prisma.GymCreateInput): Promise<Gym>;
   findById(id: string): Promise<Gym | null>;
   findManyNearby(params: UserLocalization): Promise<Gym[]>;
   searchMany(query: string, page: number): Promise<Gym[]>;
