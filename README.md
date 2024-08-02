@@ -41,3 +41,21 @@
 - [ ] The user must be identified by a JWT (JSON Web Token);
 
 </details>
+
+## Running the API
+
+```sh
+npm ci
+```
+
+```sh
+docker-compose up
+```
+
+```sh
+npm run prisma:migrate-prod
+```
+
+```sh
+npm start:dev
+```
