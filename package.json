@@ -5,13 +5,17 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
-    "start:dev-prisma": "tsx watch src/server.ts & npx prisma studio",
+    "start:dev-prisma": "tsx watch src/server.ts & npm run prisma:studio",
     "start": "node build/server.js",
     "build": "tsup src --out-dir build",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "prisma:migrate-dev": "npx prisma migrate dev",
+    "prisma:migrate-prod": "npx prisma migrate deploy",
+    "prisma:generate": "npx prisma generate",
+    "prisma:studio": "npx prisma studio"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +27,7 @@
     "@vitest/coverage-v8": "1.6.0",
     "@vitest/ui": "1.6.0",
     "eslint": "8.34.0",
-    "prisma": "4.10.1",
+    "prisma": "5.17.0",
     "tsup": "6.6.3",
     "tsx": "3.12.3",
     "typescript": "4.9.5",
@@ -31,7 +35,8 @@
     "vitest": "1.6.0"
   },
   "dependencies": {
-    "@prisma/client": "4.10.1",
+    "@fastify/jwt": "8.0.1",
+    "@prisma/client": "5.17.0",
     "bcryptjs": "2.4.3",
     "dayjs": "1.11.11",
     "dotenv": "16.0.3",
