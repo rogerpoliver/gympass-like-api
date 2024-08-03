@@ -13,101 +13,101 @@ let gymsRepository: InMemoryGymsRepository;
 let systemUnderTesting: CheckInService;
 
 describe("Check In Use Case", () => {
-  beforeEach(() => {
-    checkInsRepository = new InMemoryCheckInsRepository();
-    gymsRepository = new InMemoryGymsRepository();
-    systemUnderTesting = new CheckInService(checkInsRepository, gymsRepository);
+	beforeEach(() => {
+		checkInsRepository = new InMemoryCheckInsRepository();
+		gymsRepository = new InMemoryGymsRepository();
+		systemUnderTesting = new CheckInService(checkInsRepository, gymsRepository);
 
-    gymsRepository.create({
-      id: "gym-01",
-      title: "JavaScript Gym",
-      description: "",
-      phone: "",
-      latitude: -27.2114002,
-      longitude: -49.6398757,
-      created_at: new Date(),
-      updated_at: new Date(),
-    });
+		gymsRepository.create({
+			id: "gym-01",
+			title: "JavaScript Gym",
+			description: "",
+			phone: "",
+			latitude: -27.2114002,
+			longitude: -49.6398757,
+			created_at: new Date(),
+			updated_at: new Date(),
+		});
 
-    vi.useFakeTimers();
-  });
+		vi.useFakeTimers();
+	});
 
-  afterEach(() => {
-    vi.useRealTimers();
-  });
+	afterEach(() => {
+		vi.useRealTimers();
+	});
 
-  it("should be able to check in", async () => {
-    const { checkIn } = await systemUnderTesting.execute({
-      gymId: "gym-01",
-      userId: "user-01",
-      userLatitude: -27.2114002,
-      userLongitude: -49.6398757,
-    });
+	it("should be able to check in", async () => {
+		const { checkIn } = await systemUnderTesting.execute({
+			gymId: "gym-01",
+			userId: "user-01",
+			userLatitude: -27.2114002,
+			userLongitude: -49.6398757,
+		});
 
-    expect(checkIn.id).toEqual(expect.any(String));
-  });
+		expect(checkIn.id).toEqual(expect.any(String));
+	});
 
-  it("should be able to check in twice in the same day", async () => {
-    vi.setSystemTime(new Date(22, 0, 20, 8, 0, 0));
+	it("should be able to check in twice in the same day", async () => {
+		vi.setSystemTime(new Date(22, 0, 20, 8, 0, 0));
 
-    await systemUnderTesting.execute({
-      gymId: "gym-01",
-      userId: "user-01",
-      userLatitude: -27.2114002,
-      userLongitude: -49.6398757,
-    });
+		await systemUnderTesting.execute({
+			gymId: "gym-01",
+			userId: "user-01",
+			userLatitude: -27.2114002,
+			userLongitude: -49.6398757,
+		});
 
-    await expect(() =>
-      systemUnderTesting.execute({
-        gymId: "gym-01",
-        userId: "user-01",
-        userLatitude: -27.2114002,
-        userLongitude: -49.6398757,
-      })
-    ).rejects.toBeInstanceOf(MaxNumberCheckInsError);
-  });
+		await expect(() =>
+			systemUnderTesting.execute({
+				gymId: "gym-01",
+				userId: "user-01",
+				userLatitude: -27.2114002,
+				userLongitude: -49.6398757,
+			}),
+		).rejects.toBeInstanceOf(MaxNumberCheckInsError);
+	});
 
-  it("should be able to check in twice but in different days", async () => {
-    vi.setSystemTime(new Date(20, 0, 20, 8, 0, 0));
+	it("should be able to check in twice but in different days", async () => {
+		vi.setSystemTime(new Date(20, 0, 20, 8, 0, 0));
 
-    await systemUnderTesting.execute({
-      gymId: "gym-01",
-      userId: "user-01",
-      userLatitude: -27.2114002,
-      userLongitude: -49.6398757,
-    });
+		await systemUnderTesting.execute({
+			gymId: "gym-01",
+			userId: "user-01",
+			userLatitude: -27.2114002,
+			userLongitude: -49.6398757,
+		});
 
-    vi.setSystemTime(new Date(21, 0, 20, 8, 0, 0));
+		vi.setSystemTime(new Date(21, 0, 20, 8, 0, 0));
 
-    const { checkIn } = await systemUnderTesting.execute({
-      gymId: "gym-01",
-      userId: "user-01",
-      userLatitude: -27.2114002,
-      userLongitude: -49.6398757,
-    });
+		const { checkIn } = await systemUnderTesting.execute({
+			gymId: "gym-01",
+			userId: "user-01",
+			userLatitude: -27.2114002,
+			userLongitude: -49.6398757,
+		});
 
-    expect(checkIn.id).toEqual(expect.any(String));
-  });
+		expect(checkIn.id).toEqual(expect.any(String));
+	});
 
-  it("should not be able to check-in on a distant gym", async () => {
-    gymsRepository.items.push({
-      id: "gym-golang",
-      title: "GoLang Gym",
-      description: "",
-      phone: "",
-      latitude: new Decimal(-49.3411828),
-      longitude: new Decimal(-49.7362561),
-      created_at: new Date(),
-      updated_at: new Date(),
-    });
+	it("should not be able to check-in on a distant gym", async () => {
+		gymsRepository.items.push({
+			id: "gym-golang",
+			title: "GoLang Gym",
+			description: "",
+			phone: "",
+			latitude: new Decimal(-49.3411828),
+			longitude: new Decimal(-49.7362561),
+			created_at: new Date(),
+			updated_at: new Date(),
+		});
 
-    await expect(() =>
-      systemUnderTesting.execute({
-        gymId: "gym-golang",
-        userId: "user-01",
-        userLatitude: -27.2114002,
-        userLongitude: -49.6398757,
-      })
-    ).rejects.toBeInstanceOf(MaxDistanceError);
-  });
+		await expect(() =>
+			systemUnderTesting.execute({
+				gymId: "gym-golang",
+				userId: "user-01",
+				userLatitude: -27.2114002,
+				userLongitude: -49.6398757,
+			}),
+		).rejects.toBeInstanceOf(MaxDistanceError);
+	});
 });

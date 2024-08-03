@@ -1,26 +1,26 @@
-import { GymsRepository } from '@/repositories/gyms.repository';
-import { Gym } from '@prisma/client';
+import { GymsRepository } from "@/repositories/gyms.repository";
+import { Gym } from "@prisma/client";
 
 interface SearchGymsServiceRequest {
-  query: string;
-  page: number;
+	query: string;
+	page: number;
 }
 
 interface SearchGymsServiceResponse {
-  gyms: Gym[];
+	gyms: Gym[];
 }
 
 export class SearchGymsService {
-  constructor(private gymsRepository: GymsRepository) {}
+	constructor(private gymsRepository: GymsRepository) {}
 
-  async execute({
-    query,
-    page,
-  }: SearchGymsServiceRequest): Promise<SearchGymsServiceResponse> {
-    const gyms = await this.gymsRepository.searchMany(query, page);
+	async execute({
+		query,
+		page,
+	}: SearchGymsServiceRequest): Promise<SearchGymsServiceResponse> {
+		const gyms = await this.gymsRepository.searchMany(query, page);
 
-    return {
-      gyms,
-    };
-  }
+		return {
+			gyms,
+		};
+	}
 }

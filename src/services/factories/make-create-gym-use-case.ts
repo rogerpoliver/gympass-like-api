@@ -3,8 +3,8 @@ import { PrismaGymsRepository } from "@/repositories/prisma/prisma-gyms-reposito
 import { CreateGymService } from "../create-gym.service";
 
 export function makeCreateGymUseCase() {
-  const gymsRepository = new PrismaGymsRepository();
-  const useCase = new CreateGymService(gymsRepository);
+	const gymsRepository = new PrismaGymsRepository();
+	const useCase = new CreateGymService(gymsRepository);
 
-  return useCase;
+	return useCase;
 }

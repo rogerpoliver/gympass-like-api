@@ -3,8 +3,8 @@ import { PrismaUsersRepository } from "@/repositories/prisma/prisma-users.reposi
 import { RegisterService } from "../register.service";
 
 export function makeRegisterUseCase() {
-  const prismaUsersRepository = new PrismaUsersRepository();
-  const useCase = new RegisterService(prismaUsersRepository);
+	const prismaUsersRepository = new PrismaUsersRepository();
+	const useCase = new RegisterService(prismaUsersRepository);
 
-  return useCase;
+	return useCase;
 }

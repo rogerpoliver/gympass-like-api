@@ -8,26 +8,26 @@ let checkInsRepository: InMemoryCheckInsRepository;
 let systemUnderTesting: GetUserMetricsService;
 
 describe("Get user metrics Use Case", () => {
-  beforeEach(() => {
-    checkInsRepository = new InMemoryCheckInsRepository();
-    systemUnderTesting = new GetUserMetricsService(checkInsRepository);
-  });
+	beforeEach(() => {
+		checkInsRepository = new InMemoryCheckInsRepository();
+		systemUnderTesting = new GetUserMetricsService(checkInsRepository);
+	});
 
-  it("should be able to get check-ins count from metrics", async () => {
-    await checkInsRepository.create({
-      user_id: "user-01",
-      gym_id: "gym-01",
-    });
+	it("should be able to get check-ins count from metrics", async () => {
+		await checkInsRepository.create({
+			user_id: "user-01",
+			gym_id: "gym-01",
+		});
 
-    await checkInsRepository.create({
-      user_id: "user-01",
-      gym_id: "gym-02",
-    });
+		await checkInsRepository.create({
+			user_id: "user-01",
+			gym_id: "gym-02",
+		});
 
-    const { checkInsCount } = await systemUnderTesting.execute({
-      userId: "user-01",
-    });
+		const { checkInsCount } = await systemUnderTesting.execute({
+			userId: "user-01",
+		});
 
-    expect(checkInsCount).toEqual(2);
-  });
+		expect(checkInsCount).toEqual(2);
+	});
 });
