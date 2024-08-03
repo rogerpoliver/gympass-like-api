@@ -2,7 +2,7 @@ import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users.reposi
 
 import { GetUserProfileService } from '../get-user-profile.service';
 
-export function makeUserProfileUseCase() {
+export function makeGetUserProfileUseCase() {
   const prismaUsersRepository = new PrismaUsersRepository();
   const useCase = new GetUserProfileService(prismaUsersRepository);
 
