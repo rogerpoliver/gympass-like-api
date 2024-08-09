@@ -1,9 +1,7 @@
-version: "3.8"
-
 services:
-  api-solid-pg:
+  gym-pass-like-database:
     image: bitnami/postgresql:latest
-    container_name: api-solid-pg
+    container_name: gym-pass-like-database
     environment:
       - POSTGRESQL_USERNAME=docker
       - POSTGRESQL_PASSWORD=docker
