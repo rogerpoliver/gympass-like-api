@@ -1,5 +1,5 @@
-import { CheckInsRepository } from "@/repositories/check-ins.repository";
-import { CheckIn } from "@prisma/client";
+import type { CheckInsRepository } from "@/repositories/check-ins.repository";
+import type { CheckIn } from "@prisma/client";
 
 interface FetchUserCheckInsHistoryServiceRequest {
 	userId: string;

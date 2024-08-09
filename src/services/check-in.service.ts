@@ -1,6 +1,6 @@
-import { CheckInsRepository } from "@/repositories/check-ins.repository";
-import { GymsRepository } from "@/repositories/gyms.repository";
-import { CheckIn } from "@prisma/client";
+import type { CheckInsRepository } from "@/repositories/check-ins.repository";
+import type { GymsRepository } from "@/repositories/gyms.repository";
+import type { CheckIn } from "@prisma/client";
 
 import { MaxDistanceError } from "./errors/max-distance.error";
 import { MaxNumberCheckInsError } from "./errors/max-number-check-ins.error";

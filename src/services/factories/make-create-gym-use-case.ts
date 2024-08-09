@@ -1,6 +1,6 @@
-import { PrismaGymsRepository } from "@/repositories/prisma/prisma-gyms-repository";
+import { PrismaGymsRepository } from '@/repositories/prisma/prisma-gyms-repository';
 
-import { CreateGymService } from "../create-gym.service";
+import { CreateGymService } from '../create-gym.service';
 
 export function makeCreateGymUseCase() {
 	const gymsRepository = new PrismaGymsRepository();
