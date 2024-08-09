@@ -2,10 +2,10 @@ import type { CheckInsRepository } from "@/repositories/check-ins.repository";
 import type { GymsRepository } from "@/repositories/gyms.repository";
 import type { CheckIn } from "@prisma/client";
 
+import { getDistanceBetweenCoordinates } from "../utils/get-distance-between-coordinates";
 import { MaxDistanceError } from "./errors/max-distance.error";
 import { MaxNumberCheckInsError } from "./errors/max-number-check-ins.error";
 import { ResourceNotFoundError } from "./errors/resource-not-found.error";
-import { getDistanceBetweenCoordinates } from "./utils/get-distance-between-coordinates";
 
 interface CheckInServiceRequest {
 	userId: string;
