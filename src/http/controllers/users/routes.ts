@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
 
-import { verifiyJwt } from "@/http/middlewares/verify-jwt";
+import { verifyJwt } from "@/http/middlewares/verify-jwt";
 
 import { authenticate } from "./authenticate.controller";
 import { profile } from "./profile.controller";
@@ -13,6 +13,5 @@ export async function userRoutes(app: FastifyInstance) {
 
 	app.patch("/token/refresh", refresh);
 
-	// Needs authentication
-	app.get("/me", { onRequest: [verifiyJwt] }, profile);
+	app.get("/me", { onRequest: [verifyJwt] }, profile);
 }
