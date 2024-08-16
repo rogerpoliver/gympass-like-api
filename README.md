@@ -59,3 +59,14 @@ npm run prisma:migrate-prod
 ```sh
 npm start:dev
 ```
+
+## Running tests
+For unit testing
+```sh
+npm run test
+```
+
+For end to end testing
+```sh
+npm run test:e2e
+```
