@@ -24,7 +24,7 @@ jobs:
           node-version: 20
           cache: "npm"
       - run: npm ci
-      - run: npm run test:2e2
+      - run: npm run test:e2e
         env:
           HUSKY: 0
           JWT_SECRET: fake-testing-secret
